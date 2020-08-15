@@ -13,7 +13,7 @@ This project is a simple example of using Terraform to deploy two microservices 
 - Create a repositority called `api` in ECR repository console: `https://[YOUR-REGION].console.aws.amazon.com/ecr/create-repository`
 - Copy repository hostname: `[YOUR_DOCKER_REPO_ID].dkr.ecr.[YOUR-REGION].amazonaws.com`
 - Set the copied repository hostname to `TF_VAR_docker_repo` in your terminal.
-- In your terminal, run: `export TF_VAR_docker_repo`
+- In your terminal, run: `export TF_VAR_docker_repo=[YOUR_DOCKER_REPO_ID]`
 - In your terminal, run: `aws ecr get-login-password --region [YOUR-REGION] | docker login --username AWS --password-stdin [YOUR_DOCKER_REPO_ID].dkr.ecr.us-west-2.amazonaws.com`
 
 ## Usage
@@ -22,7 +22,11 @@ This project is a simple example of using Terraform to deploy two microservices 
 
 `./deploy.sh`
 
-Terraform will show you a load balancer URL when it has finished deploying. **Wait about 60 seconds** before visiting this as it can take time for all of the resources to come online.
+Terraform will show you a load balancer URL when it has finished deploying. **Wait about 60 seconds** before visiting this as it can take time for all of the resources to come online. When it does, you should see "`Data from API server route /api/foo: bar`" in your browser.
+
+### Undeploy
+
+`./destroy.sh`
 
 ### Local Development
 
