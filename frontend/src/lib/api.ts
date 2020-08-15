@@ -9,7 +9,6 @@ export function constructRoute(route: string) {
 export async function fetchRoute(route: string) {
     const res = await fetch(`${constructRoute(route)}`);
 
-    console.log(res);
     let data: any;
     if (res.ok) {
         const data = await res.json();

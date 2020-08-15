@@ -34,7 +34,7 @@ variable "fargate_memory" {
 ################################################################################
 variable "api_image" {
   description = "Docker image for API"
-  default     = "398461514208.dkr.ecr.us-west-2.amazonaws.com/api:latest"
+  default     = "${var.docker_repo}/api:latest"
 }
 
 variable "api_port" {
@@ -56,7 +56,7 @@ variable "api_health_check_path" {
 ################################################################################
 variable "fe_image" {
   description = "Docker image for Frontend"
-  default     = "398461514208.dkr.ecr.us-west-2.amazonaws.com/fe:latest"
+  default     = "${var.docker_repo}/fe:latest"
 }
 
 variable "fe_port" {

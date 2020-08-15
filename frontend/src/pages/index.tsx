@@ -13,7 +13,7 @@ export default function Home(data: Data) {
 
       <main>
         <div>
-          Test Data from API server route /api/foo: {data.foo}
+          Data from API server route /api/foo: {data.foo}
         </div>
       </main>
     </div>

@@ -9,7 +9,7 @@ api = Api(app)
 
 class Foo(Resource):
     def get(self):
-        return {'foo': 'blah'}
+        return {'foo': 'bar'}
 
 
 api.add_resource(Foo, '/api/foo')
