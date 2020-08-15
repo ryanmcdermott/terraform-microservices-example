@@ -55,6 +55,8 @@ crash.log
 *.tfvars
 
 .terraform/**/*
+terraform.tfstate
+terraform.tfstate.backup
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in

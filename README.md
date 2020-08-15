@@ -11,8 +11,10 @@ This project is a simple example of using Terraform to deploy two microservices 
 - Sign up for AWS if you haven't already.
 - Create a repositority called `fe` in ECR repository console: `https://[YOUR-REGION].console.aws.amazon.com/ecr/create-repository`
 - Create a repositority called `api` in ECR repository console: `https://[YOUR-REGION].console.aws.amazon.com/ecr/create-repository`
-- Copy repository hostname: `[SOME_ID].dkr.ecr.[YOUR-REGION].amazonaws.com`
+- Copy repository hostname: `[YOUR_DOCKER_REPO_ID].dkr.ecr.[YOUR-REGION].amazonaws.com`
 - Set the copied repository hostname to `TF_VAR_docker_repo` in your terminal.
+- In your terminal, run: `export TF_VAR_docker_repo`
+- In your terminal, run: `aws ecr get-login-password --region [YOUR-REGION] | docker login --username AWS --password-stdin [YOUR_DOCKER_REPO_ID].dkr.ecr.us-west-2.amazonaws.com`
 
 ## Usage
 

@@ -6,7 +6,7 @@ resource "aws_ecs_cluster" "main" {
 }
 
 resource "aws_service_discovery_private_dns_namespace" "segment" {
-  name        = "${var.project}.local"
+  name        = "discovery.local"
   description = "Service discovery for backends"
   vpc         = aws_vpc.main.id
 }
@@ -53,7 +53,7 @@ data "template_file" "api" {
   template = file("./templates/ecs/api.json.tpl")
 
   vars = {
-    api_image      = var.api_image
+    api_image      = "${var.docker_repo}/api:latest"
     api_port       = var.api_port
     fargate_cpu    = var.fargate_cpu
     fargate_memory = var.fargate_memory
@@ -92,12 +92,12 @@ resource "aws_ecs_service" "api" {
 
   load_balancer {
     target_group_arn = aws_alb_target_group.api.id
-    container_name   = "fapi"
+    container_name   = "api"
     container_port   = var.api_port
   }
 
   service_registries {
-    registry_arn     = aws_service_discovery_service.api-service.arn
+    registry_arn = aws_service_discovery_service.api-service.arn
   }
 
   depends_on = [aws_alb_listener.main, aws_iam_role_policy_attachment.ecs_task_execution_role]
@@ -110,7 +110,7 @@ data "template_file" "fe" {
   template = file("./templates/ecs/fe.json.tpl")
 
   vars = {
-    fe_image       = var.fe_image
+    fe_image       = "${var.docker_repo}/fe:latest"
     fe_port        = var.fe_port
     fargate_cpu    = var.fargate_cpu
     fargate_memory = var.fargate_memory
@@ -154,7 +154,7 @@ resource "aws_ecs_service" "fe" {
   }
 
   service_registries {
-    registry_arn     = aws_service_discovery_service.fe-service.arn
+    registry_arn = aws_service_discovery_service.fe-service.arn
   }
 
   depends_on = [aws_alb_listener.main, aws_iam_role_policy_attachment.ecs_task_execution_role]
