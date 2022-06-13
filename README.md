@@ -1,6 +1,6 @@
 # terraform-microservices-example
 
-This project is a simple example of using Terraform to deploy two microservices to AWS (GCP coming soon!) that can communicate with each other via servive discovery. The two microservices are a frontend webserver (using Next.js) and a backend API server (using Flask). You can use any framework/libraries you want for these microservices, what's provided here is just a starting point!
+This project is a simple example of using Terraform to deploy two microservices to AWS (GCP coming soon!) that can communicate with each other via service discovery. The two microservices are a frontend webserver (using Next.js) and a backend API server (using Flask). You can use any framework/libraries you want for these microservices, what's provided here is just a starting point!
 
 ## Installation
 
@@ -9,8 +9,8 @@ This project is a simple example of using Terraform to deploy two microservices 
 - Ensure you have installed: Terraform, Docker, and Docker Compose.
 - Clone this repo.
 - Sign up for AWS if you haven't already.
-- Create a repositority called `fe` in ECR repository console: `https://[YOUR-REGION].console.aws.amazon.com/ecr/create-repository`
-- Create a repositority called `api` in ECR repository console: `https://[YOUR-REGION].console.aws.amazon.com/ecr/create-repository`
+- Create a repository called `fe` in ECR repository console: `https://[YOUR-REGION].console.aws.amazon.com/ecr/create-repository`
+- Create a repository called `api` in ECR repository console: `https://[YOUR-REGION].console.aws.amazon.com/ecr/create-repository`
 - Copy repository hostname: `[YOUR_DOCKER_REPO_ID].dkr.ecr.[YOUR-REGION].amazonaws.com`
 - Set the copied repository hostname to `TF_VAR_docker_repo` in your terminal.
 - In your terminal, run: `export TF_VAR_docker_repo=[YOUR_DOCKER_REPO_ID]`
